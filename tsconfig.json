@@ -1,17 +1,26 @@
 {
-  "include": ["./src/server/**/*"],
-  "exclude": ["node_modules", "./src/client/**/*"],
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es5",
+    "rootDirs": ["./src/server"],
     "module": "commonjs",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "removeComments": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "outDir": "dist",
     "strict": true,
-    "noImplicitAny": true,
-    "skipLibCheck": true
-  }
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": [
+      "node",
+    ],
+    "lib": [
+      "es6"
+    ],
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "node_modules",
+    "src/client/**/*"
+  ]
 }

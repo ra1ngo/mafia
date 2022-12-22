@@ -1,10 +1,19 @@
 {
   "name": "mafia",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "./dist/index.js",
   "private": true,
+  "license": "ISC",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
-    "dev:server": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+    "dev:server": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "lint:fix": "eslint --fix --ext \".ts,.js\" --ignore-path .eslintignore .",
+    "release:pre": "npm version --prerelease && git push && git push --tags",
+    "release:major": "npm version --major && git push && git push --tags",
+    "release:minor": "npm version --minor && git push && git push --tags",
+    "release:patch": "npm version --patch && git push && git push --tags"
   },
   "dependencies": {
     "express": "~4.17.1",
@@ -16,9 +25,26 @@
     "@types/node": "^18.11.17",
     "@types/socket.io": "^3.0.2",
     "@types/uuid": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
     "concurrently": "^7.6.0",
     "dotenv": "^16.0.3",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
     "nodemon": "^2.0.20",
+    "prettier": "^2.8.1",
     "typescript": "^4.9.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": "npm run lint:fix"
   }
 }
