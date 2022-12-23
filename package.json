@@ -10,10 +10,10 @@
   "scripts": {
     "dev:server": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "lint:fix": "eslint --fix --ext \".ts,.js\" --ignore-path .eslintignore .",
-    "release:pre": "npm version --prerelease && git push && git push --tags",
-    "release:major": "npm version --major && git push && git push --tags",
-    "release:minor": "npm version --minor && git push && git push --tags",
-    "release:patch": "npm version --patch && git push && git push --tags"
+    "release:pre": "npm version prerelease",
+    "release:major": "npm version major",
+    "release:minor": "npm version minor",
+    "release:patch": "npm version patch"
   },
   "dependencies": {
     "express": "~4.17.1",
