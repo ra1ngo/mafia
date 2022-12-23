@@ -1,0 +1,20 @@
+{
+	"title": "domination",
+	"canvas": {
+	 	"width": 1600,
+  		"height": 980,
+		"backgroundColor": "#2b2320"
+	},
+	"minimap": {
+		"size": 200,
+		"alpha": 0.5,
+		"borderStyle": "4px solid black",
+		"backgroundColor": "#2F4F4F",
+		"playerColor": "#800000"
+	},
+	"leaderBoard": {
+		"alpha": 0.5,
+		"borderStyle": "1px solid black",
+		"backgroundColor": "#000000"
+	}
+}
