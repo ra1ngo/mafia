@@ -1,0 +1,11 @@
+body{background-color:#000000;color:#abb2bf}
+
+.container {
+    position: absolute;
+}
+
+.container canvas {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
