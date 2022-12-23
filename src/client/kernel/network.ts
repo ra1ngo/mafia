@@ -11,7 +11,7 @@ export default class Network {
   create() {}
 
   public connectToServer() {
-    const connection = io('http://localhost:3000'); // Брать из .env
+    const connection = io(`http://localhost:${process.env.SERVER_PORT}`);
     this.connection = connection;
 
     connection.on('connect', () => {

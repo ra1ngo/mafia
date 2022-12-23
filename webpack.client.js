@@ -12,6 +12,7 @@ if (result.error) {
   mode = result.parsed.NODE_ENV;
 }
 const prod = mode === 'production';
+const port = process.env.CLIENT_PORT || 8080;
 
 module.exports = {
   entry: './src/client/index.ts',
@@ -79,7 +80,7 @@ module.exports = {
     },
     host: 'localhost',
     open: false,
-    port: 8080,
+    port,
     hot: true,
   },
 };
