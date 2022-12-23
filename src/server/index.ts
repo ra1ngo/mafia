@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import socketio from 'socket.io';
 
 dotenv.config();
-console.log('start');
+
 const app: Express = express();
 const port = process.env.PORT || 3000;
 

@@ -6,7 +6,6 @@ dist
 temp/
 
 # IDE
-.idea
 .vercel
 
 .DS_Store

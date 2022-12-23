@@ -15,7 +15,7 @@ module.exports = {
     eqeqeq: 'error',
     'no-undef': 'off',
     'no-unused-vars': 'off',
-    'no-console': 'error',
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     quotes: ['error', 'single'],
     'prettier/prettier': 'error',
