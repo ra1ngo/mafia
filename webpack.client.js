@@ -1,85 +1,85 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require("path");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
 
-const DotenvPlugin = require("dotenv-webpack");
-const dotenv = require("dotenv");
+const DotenvPlugin = require('dotenv-webpack');
+const dotenv = require('dotenv');
 
-let mode = process.env.NODE_ENV || "development";
+let mode = process.env.NODE_ENV || 'development';
 const result = dotenv.config();
 if (result.error) {
   throw result.error;
-} else if (result.parsed.hasOwnProperty("NODE_ENV")) {
+} else if (result.parsed.hasOwnProperty('NODE_ENV')) {
   mode = result.parsed.NODE_ENV;
 }
-const prod = mode === "production";
+const prod = mode === 'production';
 
 module.exports = {
-  entry: "./src/client/index.ts",
+  entry: './src/client/index.ts',
   resolve: {
     alias: {
-      svelte: path.dirname(require.resolve("svelte/package.json"))
+      svelte: path.dirname(require.resolve('svelte/package.json')),
     },
-    extensions: [".mjs", ".ts", ".js", ".json", ".svelte"],
-    mainFields: ["svelte", "browser", "module", "main"]
+    extensions: ['.mjs', '.ts', '.js', '.json', '.svelte'],
+    mainFields: ['svelte', 'browser', 'module', 'main'],
   },
   output: {
-    path: path.resolve(__dirname, "public/build/"),
-    filename: "bundle.js"
+    path: path.resolve(__dirname, 'public/build/'),
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.ts$/,
-        include: path.resolve(__dirname, "src/client"),
-        loader: "ts-loader"
+        include: path.resolve(__dirname, 'src/client'),
+        loader: 'ts-loader',
       },
       {
-        test: require.resolve("Phaser"),
-        loader: "expose-loader",
-        options: { exposes: { globalName: "Phaser", override: true } }
+        test: require.resolve('Phaser'),
+        loader: 'expose-loader',
+        options: { exposes: { globalName: 'Phaser', override: true } },
       },
       {
         test: /\.svelte$/,
         use: {
-          loader: "svelte-loader",
+          loader: 'svelte-loader',
           options: {
             compilerOptions: {
-              dev: !prod
+              dev: !prod,
             },
             emitCss: prod,
-            hotReload: !prod
-          }
-        }
+            hotReload: !prod,
+          },
+        },
       },
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader"
-        ]
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         // required to prevent errors from Svelte on Webpack 5+
         test: /node_modules\/svelte\/.*\.mjs$/,
         resolve: {
-          fullySpecified: false
-        }
-      }
-    ]
+          fullySpecified: false,
+        },
+      },
+    ],
   },
   mode,
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css"
+      filename: '[name].css',
     }),
-    new DotenvPlugin()
+    new DotenvPlugin(),
   ],
-  devtool: prod ? false : "source-map",
+  devtool: prod ? false : 'source-map',
   devServer: {
-    contentBase: path.resolve(__dirname, "public"),
-    publicPath: "/build/",
-    host: "localhost",
+    static: path.join(__dirname, 'public/'),
+    devMiddleware: {
+      publicPath: '/build/',
+    },
+    host: 'localhost',
+    open: false,
     port: 8080,
-    open: false
-  }
+    hot: true,
+  },
 };
