@@ -1,31 +1,28 @@
 {
+  
   "compilerOptions": {
     "target": "ES6",
-    "module": "CommonJS",
+    "module": "ES6",
     "moduleResolution": "node",
-    "allowJs": true,
     "outDir": "dist",
     "strict": true,
     "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "strictFunctionTypes": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "sourceMap": false,
     "skipLibCheck": true,
-    "types": [
-      "node",
-    ],
-    "lib": [
-      "es6",
-      "dom"
-    ],
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitUseStrict": false,
+    "suppressExcessPropertyErrors": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "noStrictGenericChecks": false,
   },
   "include": [
     "src/**/*"
   ],
-  "exclude": [
-    "src/**/*.spec.ts",
-    "node_modules",
-    "server.js"
-  ]
 }
