@@ -1,8 +1,8 @@
 const prettierRules = {
   singleQuote: true,
-  endOfLine: "auto",
+  endOfLine: 'auto',
   tabWidth: 2,
-  printWidth: 160
+  printWidth: 160,
 };
 
 module.exports = {
@@ -10,37 +10,25 @@ module.exports = {
   env: {
     node: true,
     browser: true,
-    es6: true
+    es6: true,
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
-  plugins: [
-    "prettier",
-    "@typescript-eslint"
-  ],
+  extends: ['eslint:recommended', 'plugin:prettier/recommended', 'plugin:@typescript-eslint/recommended'],
+  plugins: ['@typescript-eslint'],
   parserOptions: {
-    parser: "typescript-eslint/parser"
+    parser: 'typescript-eslint/parser',
   },
-  ignorePatterns: [
-    "node_modules",
-    "build",
-    "dist",
-    "public"
-  ],
+  ignorePatterns: ['node_modules', 'build', 'dist', 'public'],
   rules: {
-    eqeqeq: "error",
-    "no-undef": "off",
-    "no-unused-vars": "off",
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    quotes: ["error", "single"],
-    "prettier/prettier": ["error", { ...prettierRules }],
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/no-unused-vars": "warn"
-  }
+    eqeqeq: 'error',
+    'no-undef': 'off',
+    'no-unused-vars': 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    quotes: ['error', 'single'],
+    'prettier/prettier': ['error', { ...prettierRules }],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-unused-vars': 'warn',
+  },
 };

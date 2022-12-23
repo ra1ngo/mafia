@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev:client": "webpack --config webpack.client.js && webpack serve --config webpack.client.js",
-    "dev:server": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "dev:server": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server/index.js\"",
     "lint:fix": "eslint --fix --ext \".ts,.js\" --ignore-path .eslintignore .",
     "release:pre": "npm version prerelease",
     "release:major": "npm version major",
