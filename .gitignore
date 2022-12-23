@@ -6,6 +6,8 @@ dist
 temp/
 
 # IDE
+.idea
+.vscode
 .vercel
 
 .DS_Store
