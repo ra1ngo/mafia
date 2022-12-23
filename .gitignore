@@ -7,4 +7,9 @@ temp/
 
 # IDE
 .idea
+.vscode
 .vercel
+
+.DS_Store
+
+public/build
