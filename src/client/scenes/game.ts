@@ -3,12 +3,14 @@ import SceneMap from '../kernel/scene-map';
 import SceneInput from '../kernel/scene-input';
 import EventEmitter from '../kernel/event-emitter';
 import GUI from '../app';
+import Network from '../kernel/network';
 
 export default class GameScene extends Phaser.Scene {
   private sceneLoader: SceneLoader;
   private sceneInput: SceneInput;
   private sceneMap: SceneMap;
   private gui: GUI;
+  private network: Network;
   private isReady = false;
 
   constructor() {
@@ -19,6 +21,9 @@ export default class GameScene extends Phaser.Scene {
     this.sceneInput = new SceneInput(this);
     this.sceneMap = new SceneMap(this);
     this.gui = new GUI();
+
+    // создается в конце, чтобы все события network и EventEmitter точно дошли
+    this.network = new Network();
   }
 
   preload() {
@@ -26,6 +31,7 @@ export default class GameScene extends Phaser.Scene {
     this.sceneInput.preload();
     this.sceneMap.preload();
     this.gui.preload();
+    this.network.preload();
   }
 
   create() {
@@ -34,6 +40,9 @@ export default class GameScene extends Phaser.Scene {
     this.sceneInput.create();
     this.sceneMap.create();
     this.gui.create();
+
+    this.network.create();
+    this.network.connectToServer(); // вызывается в конце, чтобы все события network и EventEmitter точно дошли
   }
 
   firstUpdate() {
