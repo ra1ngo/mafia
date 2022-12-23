@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint */
 require('dotenv').config();
-const uuid = require('uuid');
+const { v4: uniqID } = require('uuid');
 const io = require('socket.io')({
   cors: {
     origin: [`http://localhost:${process.env.CLIENT_PORT}`],
@@ -8,7 +8,7 @@ const io = require('socket.io')({
 });
 
 io.on('connection', (socket) => {
-  console.log(`New user connection id: ${uuid.v4()}`);
+  console.log(`New user connection id: ${uniqID()}`);
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
@@ -20,5 +20,5 @@ io.on('connection', (socket) => {
 });
 
 io.listen(process.env.SERVER_PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
+  console.log(`⚡️[server]: Server is running at https://localhost:${process.env.SERVER_PORT}`);
 });
