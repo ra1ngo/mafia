@@ -6,7 +6,7 @@ export default class EventEmitter extends Phaser.Events.EventEmitter {
   }
 
   static getInstance() {
-    if (!instance) {
+    if (instance === null) {
       instance = new EventEmitter();
     }
     return instance;
