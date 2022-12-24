@@ -33,6 +33,7 @@ module.exports = {
       {
         test: /\.ts$/,
         include: path.resolve(__dirname, 'src/client'),
+        exclude: path.resolve(__dirname, 'src/server'),
         loader: 'ts-loader',
       },
       {
@@ -80,7 +81,7 @@ module.exports = {
       publicPath: '/build/',
     },
     host: 'localhost',
-    open: false,
+    open: true,
     port,
     hot: true,
   },
