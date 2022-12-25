@@ -7,8 +7,8 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "dev:client": "concurrently  -c \"auto\" --prefix \"{time}-{pid}\" \"npm run build:server && npm run start:server\" \"webpack serve --config webpack.client.js\"",
-    "dev:server": "concurrently  -c \"auto\" --prefix \"{time}-{pid}\" \"webpack --watch --config ./webpack.server.js\" \"nodemon dist/server.js\"",
+    "dev:client": "concurrently  -c \"auto\" --prefix \"{time}-{pid}\" \"npm:build:server && npm:start:server\" \"webpack serve --config webpack.client.js\"",
+    "dev:server": "webpack --config webpack.server.js && concurrently  -c \"auto\" --handleInput --prefix \"{time}-{pid}\" \"webpack --watch --config ./webpack.server.js\" \"nodemon dist/server.js\"",
     "build:server": "rm -rf dist && webpack build --config ./webpack.server.js",
     "start:server": "node dist/server.js",
     "lint:fix": "eslint --fix --ext \".ts,.js\" --ignore-path .eslintignore .",
