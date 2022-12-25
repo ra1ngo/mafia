@@ -7,10 +7,10 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "dev:client": "concurrently  -c \"auto\" --prefix \"{time}-{pid}\" \"npm:build:server && npm:start:server\" \"webpack serve --config webpack.client.js\"",
-    "dev:server": "webpack --config webpack.server.js && concurrently  -c \"auto\" --handleInput --prefix \"{time}-{pid}\" \"webpack --watch --config ./webpack.server.js\" \"nodemon dist/server.js\"",
-    "build:server": "rm -rf dist && webpack build --config ./webpack.server.js",
-    "start:server": "node dist/server.js",
+    "b": "webpack build --config webpack.client.js",
+    "dev:client": "concurrently \"npm:start:server\" \"webpack serve --config webpack.client.js\"",
+    "dev:server": "webpack --watch --config ./webpack.server.js",
+    "start:server": "rm -rf dist && webpack build --config ./webpack.server.js && node ./dist/server.js",
     "lint:fix": "eslint --fix --ext \".ts,.js\" --ignore-path .eslintignore .",
     "prepare": "npx husky install",
     "release:pre": "npm version prerelease",
@@ -19,12 +19,7 @@
     "release:patch": "npm version patch"
   },
   "dependencies": {
-    "eventemitter3": "^4.0.7",
-    "lodash": "^4.17.21",
-    "phaser": "^3.55.2",
     "socket.io": "^4.0.0",
-    "socket.io-client": "^4.0.0",
-    "svelte": "^3.31.2",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
@@ -45,12 +40,15 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.2.1",
+    "eventemitter3": "^4.0.7",
     "husky": "^4.3.8",
     "lint-staged": "^13.1.0",
+    "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^1.3.4",
-    "nodemon": "^2.0.20",
-    "npm-run-all": "^4.1.5",
+    "phaser": "^3.55.2",
     "prettier": "^2.8.1",
+    "socket.io-client": "^4.5.4",
+    "svelte": "^3.55.0",
     "svelte-loader": "^3.0.0",
     "ts-loader": "^9.2.4",
     "typescript": "^4.9.4",

@@ -29,7 +29,7 @@ export default class Root {
       this.startLauncher(socket);
 
       socket.on('disconnect', (reason) => {
-        console.log(`socket ${socket.id} disconnected due to ${reason}`);
+        this.LOG(`socket ${socket.id} disconnected due to ${reason}`);
       });
     });
 
