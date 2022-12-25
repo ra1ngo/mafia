@@ -5,14 +5,15 @@ const DotenvPlugin = require('dotenv-webpack');
 const dotenv = require('dotenv');
 
 let mode = process.env.NODE_ENV || 'development';
+let port = process.env.CLIENT_PORT || 8080;
 const result = dotenv.config();
 if (result.error) {
   throw result.error;
 } else if (result.parsed.hasOwnProperty('NODE_ENV')) {
   mode = result.parsed.NODE_ENV;
+  port = result.parsed.CLIENT_PORT;
 }
 const prod = mode === 'production';
-const port = process.env.CLIENT_PORT || 8080;
 
 module.exports = {
   entry: './src/client/index.ts',
@@ -32,6 +33,7 @@ module.exports = {
       {
         test: /\.ts$/,
         include: path.resolve(__dirname, 'src/client'),
+        exclude: path.resolve(__dirname, 'src/server'),
         loader: 'ts-loader',
       },
       {
@@ -79,7 +81,7 @@ module.exports = {
       publicPath: '/build/',
     },
     host: 'localhost',
-    open: false,
+    open: true,
     port,
     hot: true,
   },
