@@ -1,19 +1,12 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 const DotenvPlugin = require('dotenv-webpack');
-const dotenv = require('dotenv');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 let mode = process.env.NODE_ENV || 'development';
 let port = process.env.CLIENT_PORT || 8080;
-const result = dotenv.config();
-if (result.error) {
-  throw result.error;
-} else if (result.parsed.hasOwnProperty('NODE_ENV')) {
-  mode = result.parsed.NODE_ENV;
-  port = result.parsed.CLIENT_PORT;
-}
-const prod = mode === 'production';
+
+const isProd = mode === 'production';
 
 module.exports = {
   entry: './src/client/index.ts',
@@ -33,7 +26,6 @@ module.exports = {
       {
         test: /\.ts$/,
         include: path.resolve(__dirname, 'src/client'),
-        exclude: path.resolve(__dirname, 'src/server'),
         loader: 'ts-loader',
       },
       {
@@ -47,10 +39,10 @@ module.exports = {
           loader: 'svelte-loader',
           options: {
             compilerOptions: {
-              dev: !prod,
+              dev: !isProd,
             },
-            emitCss: prod,
-            hotReload: !prod,
+            emitCss: isProd,
+            hotReload: !isProd,
           },
         },
       },
@@ -74,7 +66,7 @@ module.exports = {
     }),
     new DotenvPlugin(),
   ],
-  devtool: prod ? false : 'source-map',
+  devtool: isProd ? false : 'eval-source-map',
   devServer: {
     static: path.join(__dirname, 'public/'),
     devMiddleware: {

@@ -7,9 +7,10 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "dev": "npm-run-all --parallel dev:server dev:client",
-    "dev:client": "webpack --config webpack.client.js && webpack serve --config webpack.client.js",
-    "dev:server": "webpack --config webpack.server.js --watch --env afterBuild=\"npx nodemon --watch dist/bundle.js dist/bundle.js\"",
+    "dev:client": "concurrently  -c \"auto\" --prefix \"{time}-{pid}\" -g \"npm run build:server && npm run start:server\" \"webpack serve --config webpack.client.js\"",
+    "dev:server": "concurrently  -c \"auto\" --prefix \"{time}-{pid}\" -g \"webpack --watch --config ./webpack.server.js\" \"nodemon dist/server.js\"",
+    "build:server": "rm -rf dist && webpack build --config ./webpack.server.js",
+    "start:server": "node dist/server.js",
     "lint:fix": "eslint --fix --ext \".ts,.js\" --ignore-path .eslintignore .",
     "release:pre": "npm version prerelease",
     "release:major": "npm version major",
@@ -26,14 +27,18 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.18.6",
     "@types/lodash": "^4.14.169",
     "@types/node": "^18.11.17",
     "@types/socket.io": "^3.0.2",
     "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
+    "babel-loader": "^9.1.0",
+    "concurrently": "^7.6.0",
     "css-loader": "^5.0.1",
-    "dotenv": "^16.0.3",
     "dotenv-webpack": "^7.0.3",
     "eslint": "8.22.0",
     "eslint-config-prettier": "^8.5.0",

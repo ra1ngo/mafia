@@ -1,30 +1,35 @@
-/* eslint-disable @typescript-eslint */
-require('dotenv').config();
+import { Server } from 'socket.io';
+import uuid from 'uuid';
 
-import Test from './test';
+const SERVER_PORT = Number(process.env.SERVER_PORT || 9080);
+const CLIENT_PORT = Number(process.env.CLIENT_PORT || 8080);
 
-const { v4: uniqID } = require('uuid');
-const io = require('socket.io')({
+const io = new Server({
   cors: {
-    origin: [`http://localhost:${process.env.CLIENT_PORT}`],
+    origin: [`http://localhost:${CLIENT_PORT}`],
   },
 });
 
-io.on('connection', (socket: any) => {
-  console.log(`New user connection id: ${uniqID()}`);
+const LOGGER = (str: string) => {
+  console.log(`⚡️[Server]: ${str}`);
+};
+
+io.on('connection', (socket) => {
+  LOGGER(`New user connection id: ${uuid.v4()}`);
 
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+    LOGGER('User disconnected');
   });
 
-  socket.on('add-message', (message: string) => {
+  socket.on('add-message', (message) => {
     io.emit('message', { type: 'new-message', text: message });
   });
 });
 
-io.listen(process.env.SERVER_PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${process.env.SERVER_PORT}`);
+io.listen(SERVER_PORT);
+
+io.close((exc) => {
+  exc?.message && LOGGER(exc.message);
 });
 
-const test = new Test();
-test.testFunc();
+console.log(LOGGER(`Server are working on port:${SERVER_PORT}`));
