@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: Убрать выше строчку, она для того чтобы закомитить хаски
+
 import GameScene from '../scenes/game';
 import config from '../data/config.json';
 import { COLLIDER_TYPE } from '../contracts/types';

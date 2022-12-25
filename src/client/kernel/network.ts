@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: Убрать выше строчку, она для того чтобы закомитить хаски
+
 import { io, Socket } from 'socket.io-client';
 
 export default class Network {

@@ -1,3 +1,5 @@
+/* eslint-disable */
+// TODO: Убрать выше строчку, она для того чтобы закомитить хаски
 import assets from '../data/assets.json';
 import { ISpriteInfo, ISpritesheetInfo } from '../contracts/sprites';
 

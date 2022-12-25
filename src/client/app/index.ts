@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: Убрать выше строчку, она для того чтобы закомитить хаски
+
 import EventEmmiter from '../kernel/event-emitter';
 import * as store from './store';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

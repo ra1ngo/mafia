@@ -12,7 +12,7 @@
     "build:server": "rm -rf dist && webpack build --config ./webpack.server.js",
     "start:server": "node dist/server.js",
     "lint:fix": "eslint --fix --ext \".ts,.js\" --ignore-path .eslintignore .",
-    "prepare": "husky install",
+    "prepare": "npx husky install",
     "release:pre": "npm version prerelease",
     "release:major": "npm version major",
     "release:minor": "npm version minor",
@@ -45,7 +45,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.2",
+    "husky": "^4.3.8",
     "lint-staged": "^13.1.0",
     "mini-css-extract-plugin": "^1.3.4",
     "nodemon": "^2.0.20",
@@ -58,10 +58,5 @@
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",
     "webpack-node-externals": "^3.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint:fix"
-    }
   }
 }

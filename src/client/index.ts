@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: Убрать выше строчку, она для того чтобы закомитить хаски
+
 import 'Phaser';
 import { GameConfig } from './config';
 

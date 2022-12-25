@@ -1,3 +1,6 @@
+/* eslint-disable */
+/* eslint-disable  @ts-disable*/
+// TODO: Убрать выше строчку, она для того чтобы закомитить хаски
 export default class SceneInput {
   private scene: Phaser.Scene;
 

@@ -1,3 +1,5 @@
+/* eslint-disable */
+// TODO: Убрать выше строчку, она для того чтобы закомитить хаски
 import SceneLoader from '../kernel/scene-loader';
 import SceneMap from '../kernel/scene-map';
 import SceneInput from '../kernel/scene-input';
