@@ -2,18 +2,19 @@ import Launcher from '../launcher';
 import { Server, Socket } from 'socket.io';
 
 interface IConfig {
-  CLIENT_PORT?: number;
-  SERVER_PORT?: number;
+  CLIENT_PORT: number;
+  SERVER_PORT: number;
 }
 
 export default class Root {
   readonly io: Server;
-  readonly config: IConfig = {};
+  readonly config: IConfig = {
+    CLIENT_PORT: Number(process.env.CLIENT_PORT) || 8080,
+    SERVER_PORT: Number(process.env.CLIENT_PORT) || 9080,
+  };
   readonly Launcher: Launcher = new Launcher();
 
-  constructor(config: IConfig) {
-    this.config = { ...config };
-
+  constructor() {
     this.io = new Server({
       cors: {
         origin: [`http://localhost:${this.config.CLIENT_PORT}`],
