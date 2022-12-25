@@ -5,6 +5,7 @@ const SERVER_PORT = Number(process.env.SERVER_PORT || 9080);
 const CLIENT_PORT = Number(process.env.CLIENT_PORT || 8080);
 
 console.log('Test husk')
+console.log('Test husk')
 
 const io = new Server({
   cors: {
