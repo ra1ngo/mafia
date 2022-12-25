@@ -12,6 +12,7 @@
     "build:server": "rm -rf dist && webpack build --config ./webpack.server.js",
     "start:server": "node dist/server.js",
     "lint:fix": "eslint --fix --ext \".ts,.js\" --ignore-path .eslintignore .",
+    "prepare": "husky install",
     "release:pre": "npm version prerelease",
     "release:major": "npm version major",
     "release:minor": "npm version minor",
