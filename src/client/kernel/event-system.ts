@@ -14,7 +14,6 @@ export default class EventSystem {
   }
 
   public createEventSystem(hooks: object) {
-    console.log(hooks);
     Object.entries(hooks).forEach(([systemName, hook]) => {
       Object.entries(hook).forEach(([eventName, handler]) => {
         if (typeof handler !== 'function') return;
